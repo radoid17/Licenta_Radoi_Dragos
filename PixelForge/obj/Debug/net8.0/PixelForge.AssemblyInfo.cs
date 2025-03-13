@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("PixelForge")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+f5d955745f2df70c506503e5020b19ff7b92c4c4")]
 [assembly: System.Reflection.AssemblyProductAttribute("PixelForge")]
 [assembly: System.Reflection.AssemblyTitleAttribute("PixelForge")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
