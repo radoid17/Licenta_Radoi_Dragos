@@ -24,3 +24,9 @@
 /home/dragos-radoi/Documents/Licenta/PixelForge/obj/Debug/net8.0/PixelForge.pdb
 /home/dragos-radoi/Documents/Licenta/PixelForge/obj/Debug/net8.0/PixelForge.genruntimeconfig.cache
 /home/dragos-radoi/Documents/Licenta/PixelForge/obj/Debug/net8.0/ref/PixelForge.dll
+/home/dragos-radoi/Documents/Licenta/PixelForge/bin/Debug/net8.0/Microsoft.OpenApi.dll
+/home/dragos-radoi/Documents/Licenta/PixelForge/bin/Debug/net8.0/MinimalApis.Extensions.dll
+/home/dragos-radoi/Documents/Licenta/PixelForge/bin/Debug/net8.0/MiniValidation.dll
+/home/dragos-radoi/Documents/Licenta/PixelForge/obj/Debug/net8.0/PixelForge.csproj.AssemblyReference.cache
+/home/dragos-radoi/Documents/Licenta/PixelForge/obj/Debug/net8.0/PixelForge.MvcApplicationPartsAssemblyInfo.cs
+/home/dragos-radoi/Documents/Licenta/PixelForge/obj/Debug/net8.0/PixelForge.csproj.CopyComplete

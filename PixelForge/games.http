@@ -1,1 +1,29 @@
-GET http://localhost:5062
+GET http://localhost:5062/games
+
+###
+GET http://localhost:5062/games/4
+
+###
+POST http://localhost:5062/games
+Content-Type: application/json
+
+{
+    "name": "Minecraft",
+    "genre": "Builder",
+    "price": 19.99,
+    "releaseDate": "2011-11-18"
+}
+
+###
+PUT http://localhost:5062/games/1
+Content-Type: application/json
+
+{
+    "name": "Call of Duty: Black Ops",
+    "genre": "First Person Shooter",
+    "price": 19.99,
+    "releaseDate": "2010-11-09"
+}
+
+###
+DELETE http://localhost:5062/games/4

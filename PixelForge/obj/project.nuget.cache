@@ -1,8 +1,12 @@
 {
   "version": 2,
-  "dgSpecHash": "whz4FY1sQE5KSgkeccWrQFV7NIKmacBCoVVac+BTdtkW6crzHoH+8qn6sLlKfXt6+BQCrpi/2eqy00jAFmZVJQ==",
+  "dgSpecHash": "cCJ6xW9fDSTeIBaRcOY6OuQ9U+Y1a71Vmhl6q1eQ3yhEf1KDcCoYSgg1kFHEacqijJVWHLaZVWcUg1blB2Ht2A==",
   "success": true,
   "projectFilePath": "/home/dragos-radoi/Documents/Licenta/PixelForge/PixelForge.csproj",
-  "expectedPackageFiles": [],
+  "expectedPackageFiles": [
+    "/home/dragos-radoi/.nuget/packages/microsoft.openapi/1.4.3/microsoft.openapi.1.4.3.nupkg.sha512",
+    "/home/dragos-radoi/.nuget/packages/minimalapis.extensions/0.11.0/minimalapis.extensions.0.11.0.nupkg.sha512",
+    "/home/dragos-radoi/.nuget/packages/minivalidation/0.8.0/minivalidation.0.8.0.nupkg.sha512"
+  ],
   "logs": []
 }
