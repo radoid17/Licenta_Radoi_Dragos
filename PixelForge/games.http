@@ -1,7 +1,7 @@
 GET http://localhost:5062/games
 
 ###
-GET http://localhost:5062/games/4
+GET http://localhost:5062/games/7
 
 ###
 POST http://localhost:5062/games
@@ -9,7 +9,7 @@ Content-Type: application/json
 
 {
     "name": "Minecraft",
-    "genre": "Builder",
+    "genreId": 5,
     "price": 19.99,
     "releaseDate": "2011-11-18"
 }
@@ -20,7 +20,7 @@ Content-Type: application/json
 
 {
     "name": "Call of Duty: Black Ops",
-    "genre": "First Person Shooter",
+    "genreId": 1,
     "price": 19.99,
     "releaseDate": "2010-11-09"
 }

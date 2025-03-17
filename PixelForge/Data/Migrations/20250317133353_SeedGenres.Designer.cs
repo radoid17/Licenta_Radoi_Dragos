@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using PixelForge.Data;
 
@@ -10,9 +11,11 @@ using PixelForge.Data;
 namespace PixelForge.Data.Migrations
 {
     [DbContext(typeof(PixelForgeContext))]
-    partial class PixelForgeContextModelSnapshot : ModelSnapshot
+    [Migration("20250317133353_SeedGenres")]
+    partial class SeedGenres
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder.HasAnnotation("ProductVersion", "8.0.2");

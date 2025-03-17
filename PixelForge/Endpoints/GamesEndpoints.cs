@@ -1,5 +1,8 @@
 using System;
+using PixelForge.Data;
 using PixelForge.Dtos;
+using PixelForge.Entities;
+using PixelForge.Mapping;
 
 namespace PixelForge.Endpoints;
 
@@ -44,20 +47,15 @@ public static class GamesEndpoints
 
         }).WithName(GetGameEndpointName);
 
-        group.MapPost("/", (CreateGameDto newGame) => {
+        group.MapPost("/", (CreateGameDto newGame, PixelForgeContext dbContext) => {
             
-            
+            Game game = newGame.ToEntity();
+            game.Genre = dbContext.Genres.Find(newGame.GenreId);
 
-            GameDto game = new(
-                games.Count + 1,
-                newGame.Name,
-                newGame.Genre,
-                newGame.Price,
-                newGame.ReleaseDate);
+            dbContext.Games.Add(game);
+            dbContext.SaveChanges();
 
-            games.Add(game);
-
-            return Results.CreatedAtRoute(GetGameEndpointName, new {id = game.Id}, game);
+            return Results.CreatedAtRoute(GetGameEndpointName, new {id = game.Id}, game.ToDto());
         });
 
         group.MapPut("/{id}", (int id, UpdateGameDto updatedGame) => {
