@@ -1,4 +1,5 @@
 using System;
+using Microsoft.EntityFrameworkCore;
 using PixelForge.Data;
 using PixelForge.Dtos;
 using PixelForge.Entities;
@@ -10,73 +11,51 @@ public static class GamesEndpoints
 {
     const string GetGameEndpointName = "GetGame"; 
 
-    private static readonly List<GameDto> games = [
-        new (
-            1,
-            "Call of Duty: Black Ops",
-            "First Person Shooter",
-            29.99M,
-            new DateOnly(2010, 11, 9)),
-        
-        new (
-            2,
-            "Assassin's Creed III",
-            "Action-Adventure",
-            39.99M,
-            new DateOnly(2012, 10, 30)),
-        
-        new (
-            3,
-            "Half Life 2",
-            "First PErson Shooter",
-            9.99M,
-            new DateOnly(2004, 11, 16))
-    ];
-
     public static RouteGroupBuilder MapGamesEndpoints(this WebApplication app){
 
         var group = app.MapGroup("games").WithParameterValidation();
 
-        group.MapGet("/", () => games);
+        group.MapGet("/", (PixelForgeContext dbContext) => 
+            dbContext.Games
+                     .Include(game => game.Genre)
+                     .Select(game => game.ToGameSummaryDto())
+                     .AsNoTracking());
 
-        group.MapGet("/{id}", (int id) => {
+        group.MapGet("/{id}", (int id, PixelForgeContext dbContext) => {
 
-            GameDto? game = games.Find(game => game.Id ==  id);
+            Game? game = dbContext.Games.Find(id);
 
-            return game is null ?Results.NotFound() : Results.Ok(game);
+            return game is null ?Results.NotFound() : Results.Ok(game.ToGameDetailsDto());
 
         }).WithName(GetGameEndpointName);
 
         group.MapPost("/", (CreateGameDto newGame, PixelForgeContext dbContext) => {
             
             Game game = newGame.ToEntity();
-            game.Genre = dbContext.Genres.Find(newGame.GenreId);
 
             dbContext.Games.Add(game);
             dbContext.SaveChanges();
 
-            return Results.CreatedAtRoute(GetGameEndpointName, new {id = game.Id}, game.ToDto());
+            return Results.CreatedAtRoute(GetGameEndpointName, new {id = game.Id}, game.ToGameDetailsDto());
         });
 
-        group.MapPut("/{id}", (int id, UpdateGameDto updatedGame) => {
-            var index = games.FindIndex(game => game.Id == id);
+        group.MapPut("/{id}", (int id, UpdateGameDto updatedGame, PixelForgeContext dbContext) => {
+            var existingGame = dbContext.Games.Find(id);
 
-            if(index == -1){
+            if(existingGame is null){
                 return Results.NotFound();
             }
 
-            games[index] =new GameDto(
-                id,
-                updatedGame.Name,
-                updatedGame.Genre,
-                updatedGame.Price,
-                updatedGame.ReleaseDate);
+            dbContext.Entry(existingGame).CurrentValues.SetValues(updatedGame.ToEntity(id));
+            dbContext.SaveChanges();
 
             return Results.NoContent();
         });
 
-        group.MapDelete("/{id}", (int id) => {
-            games.RemoveAll(game => game.Id == id);
+        group.MapDelete("/{id}", (int id, PixelForgeContext dbContext) => {
+            dbContext.Games
+                     .Where(game => game.Id == id)
+                     .ExecuteDelete();
 
             return Results.NoContent();
         });
