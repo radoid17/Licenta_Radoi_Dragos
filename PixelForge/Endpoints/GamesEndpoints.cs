@@ -15,47 +15,50 @@ public static class GamesEndpoints
 
         var group = app.MapGroup("games").WithParameterValidation();
 
-        group.MapGet("/", (PixelForgeContext dbContext) => 
-            dbContext.Games
+        group.MapGet("/", async (PixelForgeContext dbContext) => 
+            await dbContext.Games
                      .Include(game => game.Genre)
                      .Select(game => game.ToGameSummaryDto())
-                     .AsNoTracking());
+                     .AsNoTracking()
+                     .ToListAsync());
 
-        group.MapGet("/{id}", (int id, PixelForgeContext dbContext) => {
+        group.MapGet("/{id}", async (int id, PixelForgeContext dbContext) => {
 
-            Game? game = dbContext.Games.Find(id);
+            Game? game = await dbContext.Games.FindAsync(id);
 
             return game is null ?Results.NotFound() : Results.Ok(game.ToGameDetailsDto());
 
         }).WithName(GetGameEndpointName);
 
-        group.MapPost("/", (CreateGameDto newGame, PixelForgeContext dbContext) => {
+        group.MapPost("/", async (CreateGameDto newGame, PixelForgeContext dbContext) => {
             
             Game game = newGame.ToEntity();
 
             dbContext.Games.Add(game);
-            dbContext.SaveChanges();
+            await dbContext.SaveChangesAsync();
 
             return Results.CreatedAtRoute(GetGameEndpointName, new {id = game.Id}, game.ToGameDetailsDto());
         });
 
-        group.MapPut("/{id}", (int id, UpdateGameDto updatedGame, PixelForgeContext dbContext) => {
-            var existingGame = dbContext.Games.Find(id);
+        group.MapPut("/{id}", async (int id, UpdateGameDto updatedGame, PixelForgeContext dbContext) => {
+            
+            var existingGame = await dbContext.Games.FindAsync(id);
 
             if(existingGame is null){
                 return Results.NotFound();
             }
 
             dbContext.Entry(existingGame).CurrentValues.SetValues(updatedGame.ToEntity(id));
-            dbContext.SaveChanges();
+            await dbContext.SaveChangesAsync();
 
             return Results.NoContent();
         });
 
-        group.MapDelete("/{id}", (int id, PixelForgeContext dbContext) => {
-            dbContext.Games
+        group.MapDelete("/{id}", async (int id, PixelForgeContext dbContext) => {
+            
+            await dbContext.Games
                      .Where(game => game.Id == id)
-                     .ExecuteDelete();
+                     .ExecuteDeleteAsync();
 
             return Results.NoContent();
         });

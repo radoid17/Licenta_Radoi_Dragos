@@ -9,7 +9,9 @@ builder.Services.AddSqlite<PixelForgeContext>(connString);
 var app = builder.Build();
 
 app.MapGamesEndpoints();
+app.MapGenresEndpoints();
 
-app.MigrateDb();
+
+await app.MigrateDbAsync();
 
 app.Run();
