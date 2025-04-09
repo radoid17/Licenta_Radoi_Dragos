@@ -29,7 +29,6 @@
 /home/dragos-radoi/Documents/Licenta/PixelForge/bin/Debug/net8.0/MiniValidation.dll
 /home/dragos-radoi/Documents/Licenta/PixelForge/obj/Debug/net8.0/PixelForge.csproj.AssemblyReference.cache
 /home/dragos-radoi/Documents/Licenta/PixelForge/obj/Debug/net8.0/PixelForge.MvcApplicationPartsAssemblyInfo.cs
-/home/dragos-radoi/Documents/Licenta/PixelForge/obj/Debug/net8.0/PixelForge.csproj.CopyComplete
 /home/dragos-radoi/Documents/Licenta/PixelForge/bin/Debug/net8.0/Microsoft.Data.Sqlite.dll
 /home/dragos-radoi/Documents/Licenta/PixelForge/bin/Debug/net8.0/Microsoft.EntityFrameworkCore.dll
 /home/dragos-radoi/Documents/Licenta/PixelForge/bin/Debug/net8.0/Microsoft.EntityFrameworkCore.Abstractions.dll
@@ -125,3 +124,4 @@
 /home/dragos-radoi/Documents/Licenta/PixelForge/bin/Debug/net8.0/tr/Microsoft.CodeAnalysis.Workspaces.resources.dll
 /home/dragos-radoi/Documents/Licenta/PixelForge/bin/Debug/net8.0/zh-Hans/Microsoft.CodeAnalysis.Workspaces.resources.dll
 /home/dragos-radoi/Documents/Licenta/PixelForge/bin/Debug/net8.0/zh-Hant/Microsoft.CodeAnalysis.Workspaces.resources.dll
+/home/dragos-radoi/Documents/Licenta/PixelForge/obj/Debug/net8.0/PixelForge.csproj.Up2Date
